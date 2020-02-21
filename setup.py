@@ -22,6 +22,7 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'gtracks-plot-gene=gtracks.plot_gene:main',
+            'gtracks-download-example-bw=gtracks.download_example_bw:main'
         ]
     },
     include_package_data=True
