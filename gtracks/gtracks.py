@@ -206,12 +206,12 @@ def main():
             'Please make sure the output file extension is pdf, png, or svg'
         )
     if COORD_REGEX.match(args.region):
-        chrom, start, end = parse_region(args.region)
+        chrom, xmin, xmax = parse_region(args.region)
     else:
-        chrom, start, end = parse_gene(args.gene)
-    center = (end + start) / 2
-    xmin = int(center - args.scale / 2 * (end - start))
-    xmax = int(center + args.scale / 2 * (end - start))
+        chrom, start, end = parse_gene(args.region)
+        center = (end + start) / 2
+        xmin = int(center - 0.55 * (end - start))
+        xmax = int(center + 0.55 * (end - start))
     with tempfile.NamedTemporaryFile(dir=args.tmp_dir) as temp_tracks:
         tracks_file = make_tracks_file(
             *args.track,
