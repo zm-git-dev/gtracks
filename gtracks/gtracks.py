@@ -143,8 +143,8 @@ def parse_arguments():
     )
     parser.add_argument(
         'region',
-        metavar='<chr:start-end>',
-        help='coordinates of the region to plot'
+        metavar='<{chr:start-end,GENE}>',
+        help='coordinates or gene name to plot'
     )
     parser.add_argument(
         'track',
