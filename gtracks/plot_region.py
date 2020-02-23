@@ -15,28 +15,16 @@ from gtracks.gtracks import (
 
 # Functions ====================================================================
 
-def parse_gene(gene):
-    with gzip.open(GENES_PATH, 'rt') as f:
-        for line in f:
-            parsed_line = line.split()
-            if parsed_line[3] == gene:
-                chrom, start, end = parsed_line[:3]
-                break
-        else:
-            raise RuntimeError('gene not found')
-    return chrom, int(start), int(end)
-
-
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description=(
-            'Plot ATAC-seq read density and gene annotations around a gene'
+            'Plot ATAC-seq read density and gene annotations in a genomic region'
         )
     )
     parser.add_argument(
-        'gene',
-        metavar='<GENE>',
-        help='Name of the gene to plot'
+        'region',
+        metavar='<chr:start-end>',
+        help='coordinates of the region to plot'
     )
     parser.add_argument(
         'track',
@@ -61,13 +49,6 @@ def parse_arguments():
         metavar='<float>',
         type=float,
         help='max value of y-axis'
-    )
-    parser.add_argument(
-        '--scale',
-        metavar='<float>',
-        type=float,
-        default=2,
-        help='scale of x-axis'
     )
     parser.add_argument(
         '--tmp-dir',
@@ -104,10 +85,6 @@ def main():
         raise RuntimeError(
             'Please make sure the output file extension is pdf, png, or svg'
         )
-    chrom, start, end = parse_gene(args.gene)
-    center = (end + start) / 2
-    xmin = int(center - args.scale / 2 * (end - start))
-    xmax = int(center + args.scale / 2 * (end - start))
     with tempfile.NamedTemporaryFile(dir=args.tmp_dir) as temp_tracks:
         tracks_file = make_tracks_file(
             *args.track,
@@ -120,6 +97,6 @@ def main():
         temp_tracks.write(tracks_file.encode())
         temp_tracks.seek(0)
         generate_plot(
-            f'{chrom}:{xmin}-{xmax}', temp_tracks.name, args.output,
+            args.region, temp_tracks.name, args.output,
             width=args.width
         )
