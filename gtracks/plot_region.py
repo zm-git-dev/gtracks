@@ -2,7 +2,7 @@
 # plot_gene.py
 #===============================================================================
 
-"""plot genome track data around a gene"""
+"""plot genome track data in a region"""
 
 import argparse
 import gzip
@@ -18,7 +18,8 @@ from gtracks.gtracks import (
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description=(
-            'Plot ATAC-seq read density and gene annotations in a genomic region'
+            'Plot ATAC-seq read density and gene annotations in a genomic '
+            'region'
         )
     )
     parser.add_argument(
@@ -97,6 +98,5 @@ def main():
         temp_tracks.write(tracks_file.encode())
         temp_tracks.seek(0)
         generate_plot(
-            args.region, temp_tracks.name, args.output,
-            width=args.width
+            args.region, temp_tracks.name, args.output, width=args.width
         )

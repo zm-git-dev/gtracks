@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='gtracks',
-    version='0.0.1',
+    version='1.0.0',
     author='Anthony Aylward',
     author_email='aaylward@eng.ucsd.edu',
     description='Plot genome track data',
@@ -21,7 +21,7 @@ setuptools.setup(
     install_requires=['deeptools', 'seaborn'],
     entry_points={
         'console_scripts': [
-            'gtracks-plot-gene=gtracks.plot_gene:main',
+            'gtracks=gtracks.gtracks:main',
             'gtracks-download-example-bw=gtracks.download_example_bw:main'
         ]
     },
