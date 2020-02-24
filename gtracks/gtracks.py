@@ -165,6 +165,13 @@ def parse_arguments():
         help='compressed 6-column BED file containing gene annotations'
     )
     parser.add_argument(
+        '--color-palette',
+        metavar='<#color>',
+        nargs='+',
+        default=COLOR_PALETTE,
+        help='color pallete for tracks'
+    )
+    parser.add_argument(
         '--max',
         metavar='<float>',
         type=float,
@@ -217,7 +224,7 @@ def main():
             *args.track,
             genes=args.genes,
             max=args.max,
-            color_palette=COLOR_PALETTE,
+            color_palette=args.color_palette,
             genes_height=args.genes_height,
             gene_rows=args.gene_rows
         )
