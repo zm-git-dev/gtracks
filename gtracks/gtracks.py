@@ -2,7 +2,7 @@
 # gtracks.py
 #===============================================================================
 
-"""Plot ATAC-seq read density and gene annotations around a gene"""
+"""Plot BigWig signal tracks and gene annotations in a genomic region"""
 
 
 
@@ -137,7 +137,7 @@ def parse_gene(gene):
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description=(
-            'Plot ATAC-seq read density and gene annotations in a genomic '
+            'Plot BigWig signal tracks and gene annotations in a genomic '
             'region'
         )
     )
