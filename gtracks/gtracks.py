@@ -162,7 +162,10 @@ def parse_arguments():
         '--genes',
         metavar='<path/to/genes.bed.gz>',
         default=GENES_PATH,
-        help='compressed 6-column BED file containing gene annotations'
+        help=(
+            'compressed 6-column BED file or 12-column BED12 file containing '
+            'gene annotations'
+        )
     )
     parser.add_argument(
         '--color-palette',

@@ -28,14 +28,14 @@ positional arguments:
   <{chr:start-end,GENE}>
                         coordinates or gene name to plot
   <track.bw>            BigWig files containing tracks
-  <path/to/output.{pdf,png,svg}
+  <path/to/output.{pdf,png,svg}>
                         path to output file
 
 optional arguments:
   -h, --help            show this help message and exit
   --genes <genes.bed.gz>
-                        compressed 6-column BED file containing gene
-                        annotations
+                        compressed 6-column BED file or 12-column BED12 file
+                        containing gene annotations
   --color-palette <#color> [<#color> ...]
                         color pallete for tracks
   --max <float>         max value of y-axis
