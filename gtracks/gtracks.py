@@ -2,7 +2,7 @@
 # gtracks.py
 #===============================================================================
 
-"""Plot BigWig signal tracks and gene annotations in a genomic region"""
+"""Plot bigWig signal tracks and gene annotations in a genomic region"""
 
 
 
@@ -137,7 +137,7 @@ def parse_gene(gene):
 def parse_arguments():
     parser = argparse.ArgumentParser(
         description=(
-            'Plot BigWig signal tracks and gene annotations in a genomic '
+            'Plot bigWig signal tracks and gene annotations in a genomic '
             'region'
         )
     )
@@ -151,7 +151,7 @@ def parse_arguments():
         metavar='<track.bw>',
         nargs='*',
         default=TRACKS,
-        help='BigWig files containing tracks'
+        help='bigWig files containing tracks'
     )
     parser.add_argument(
         'output',

@@ -1,6 +1,6 @@
 # gtracks
 
-plot genome track data (for example from BigWig files)
+plot genome track data (for example from bigWig files)
 
 ## Installation
 
@@ -22,12 +22,12 @@ usage: gtracks [-h] [--genes <genes.bed.gz>]
                <{chr:start-end,GENE}> [<track.bw> [<track.bw> ...]]
                <path/to/output.{pdf,png,svg}
 
-Plot BigWig signal tracks and gene annotations in a genomic region
+Plot bigWig signal tracks and gene annotations in a genomic region
 
 positional arguments:
   <{chr:start-end,GENE}>
                         coordinates or gene name to plot
-  <track.bw>            BigWig files containing tracks
+  <track.bw>            bigWig files containing tracks
   <path/to/output.{pdf,png,svg}>
                         path to output file
 
