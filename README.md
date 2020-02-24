@@ -15,13 +15,14 @@ pip3 install --user gtracks
 ## Usage
 
 ```
-usage: gtracks [-h] [--genes <genes.bed.gz>] [--max <float>]
+usage: gtracks [-h] [--genes <genes.bed.gz>]
+               [--color-palette <#color> [<#color> ...]] [--max <float>]
                [--tmp-dir <temp/file/dir>] [--width <int>]
                [--genes-height <int>] [--gene-rows <int>]
                <{chr:start-end,GENE}> [<track.bw> [<track.bw> ...]]
                <path/to/output.{pdf,png,svg}
 
-Plot ATAC-seq read density and gene annotations in a genomic region
+Plot BigWig signal tracks and gene annotations in a genomic region
 
 positional arguments:
   <{chr:start-end,GENE}>
@@ -35,6 +36,8 @@ optional arguments:
   --genes <genes.bed.gz>
                         compressed 6-column BED file containing gene
                         annotations
+  --color-palette <#color> [<#color> ...]
+                        color pallete for tracks
   --max <float>         max value of y-axis
   --tmp-dir <temp/file/dir>
                         directory for temporary files

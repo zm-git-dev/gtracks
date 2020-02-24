@@ -160,7 +160,7 @@ def parse_arguments():
     )
     parser.add_argument(
         '--genes',
-        metavar='<genes.bed.gz>',
+        metavar='<path/to/genes.bed.gz>',
         default=GENES_PATH,
         help='compressed 6-column BED file containing gene annotations'
     )

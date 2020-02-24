@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='gtracks',
-    version='1.0.4',
+    version='1.0.5',
     author='Anthony Aylward',
     author_email='aaylward@eng.ucsd.edu',
     description='Plot genome track data',
