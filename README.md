@@ -12,6 +12,33 @@ or
 pip3 install --user gtracks
 ```
 
+## Examples
+
+To generate a test plot, you only need to provide the output filename.
+```sh
+gtracks test.svg
+```
+![test plot](test.svg)
+
+You can plot your own tracks over other genomic regions by providing more
+arguments. The file type of the plot will be determined by the output file
+extension. For more command-line options, see the usage page below.
+```sh
+gtracks chr11:2150341-2182439 track1.bw track2.bw output.pdf
+gtracks INS track1.bw track2.bw output.png
+```
+
+If you want to use your own bigWig files but don't want to write out their
+paths every time you run `gtracks`, you can set your own default tracks using
+the environment variable `GTRACKS_TRACKS`.
+```
+export GTRACKS_TRACKS=track1.bw,track2.bw,track3.bw
+gtracks output.svg
+```
+
+You can also change the default gene annotations file and color palette using
+environment variables `GTRACKS_GENES_PATH` and `GTRACKS_COLOR_PALETTE`.
+
 ## Usage
 
 ```
@@ -44,14 +71,4 @@ optional arguments:
   --width <int>         width of plot in cm
   --genes-height <int>  height of genes track
   --gene-rows <int>     number of gene rows
-```
-
-## Examples
-
-```sh
-gtracks chr21:33031597-33041570 track1.bw track2.bw output.pdf
-gtracks SOD1 track1.bw track2.bw output.png
-
-export GTRACKS_TRACKS=track1.bw,track2.bw
-gtracks SOD1 output.svg
 ```
