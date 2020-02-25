@@ -149,7 +149,7 @@ def parse_arguments():
     parser.add_argument(
         'region',
         metavar='<{chr:start-end,GENE}>',
-        default='INS',
+        default='INS-IGF2',
         help='coordinates or gene name to plot'
     )
     parser.add_argument(
