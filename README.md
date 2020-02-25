@@ -40,8 +40,9 @@ You may want to add more rows to the genes track. You can do this using
 the `--genes-height` and `--gene-rows` options.
 
 ```sh
-gtracks INS output.svg --genes-height 6 --gene-rows 6
+gtracks INS test-genes.svg --genes-height 6 --gene-rows 6
 ```
+![test plot with more gene rows](test-genes.svg)
 
 ### Changing the color palette
 
