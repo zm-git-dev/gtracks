@@ -1,1 +1,2 @@
-include gtracks/genes.bed12.bed.gz
+include gtracks/hg19.bed12.bed.gz
+include gtracks/hg38.bed12.bed.gz

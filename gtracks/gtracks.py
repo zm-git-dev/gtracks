@@ -65,7 +65,6 @@ COLOR_PALETTE = os.environ.get(
 ).split(',')
 GENES_PATH = os.environ.get(
     'GTRACKS_GENES_PATH',
-    os.path.join(os.path.dirname(__file__), 'genes.bed12.bed.gz')
 )
 TRACKS = os.environ.get(
     'GTRACKS_TRACKS',
@@ -73,6 +72,14 @@ TRACKS = os.environ.get(
 ).split(',')
 
 COORD_REGEX = re.compile('chr[1-9XY]+:[0-9]+-[0-9]+$')
+
+HG19_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg19.bed12.bed.gz')
+HG38_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg38.bed12.bed.gz')
+GENOME_TO_GENES = {
+    'GRCh38': HG38_GENES_PATH, 'hg38': HG38_GENES_PATH,
+    'GRCh37': HG19_GENES_PATH, 'hg19': HG19_GENES_PATH
+}
+
 
 
 
@@ -160,11 +167,12 @@ def parse_arguments():
     )
     parser.add_argument(
         '--genes',
-        metavar='<path/to/genes.bed.gz>',
-        default=GENES_PATH,
+        metavar='<{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>',
+        default='GRCh38',
         help=(
             'compressed 6-column BED file or 12-column BED12 file containing '
-            'gene annotations'
+            'gene annotations. Alternatively, providing a genome identifier '
+            'will use one of the included gene tracks. (default: GRCh38)'
         )
     )
     parser.add_argument(
@@ -190,22 +198,26 @@ def parse_arguments():
         metavar='<int>',
         type=int,
         default=40,
-        help='width of plot in cm'
+        help='width of plot in cm (default: 40)'
     )
     parser.add_argument(
         '--genes-height',
         metavar='<int>',
         type=int,
         default=2,
-        help='height of genes track'
+        help='height of genes track (default: 2)'
     )
     parser.add_argument(
         '--gene-rows',
         metavar='<int>',
         type=int,
         default=1,
-        help='number of gene rows'
+        help='number of gene rows (default: 1)'
     )
+    args = parser.parse_args()
+    if args.genes in set(GENOME_TO_GENES.keys()):
+        genes_path = GENOME_TO_GENES[args.genes]
+        args.genes = genes_path
     return parser.parse_args()
 
 
