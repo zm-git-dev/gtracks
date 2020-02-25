@@ -1,3 +1,3 @@
 include gtracks/hg19.bed12.bed.gz
 include gtracks/hg38.bed12.bed.gz
-include gtracks/pancreatic_islet_atac_seq_ins.bw
+include gtracks/pancreatic_islet_atac_seq_ins_igf2.bw
