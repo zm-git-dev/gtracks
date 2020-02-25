@@ -105,7 +105,7 @@ optional arguments:
                         compressed 6-column BED file or 12-column BED12 file
                         containing gene annotations. Alternatively, providing
                         a genome identifier will use one of the included gene
-                        tracks. (default: GRCh38)
+                        tracks. (default: GRCh37)
   --color-palette <#color> [<#color> ...]
                         color pallete for tracks
   --max <float>         max value of y-axis
