@@ -36,6 +36,13 @@ genes by adding `--genes GRCh38` or `--genes hg38`. You can use your own gene
 annotations file (BED or BED12 format) by providing
 `--genes <path/to/genes.bed.gz>`.
 
+You may want to add more rows to the genes track. You can do this using
+the `--genes-height` and `--gene-rows` options.
+
+```sh
+gtracks INS output.svg --genes-height 6 --gene-rows 6
+```
+
 ### Changing the color palette
 
 You can change the color palette for bigWig tracks using the `--color-palette` option.
@@ -75,12 +82,12 @@ gtracks output.svg
 ## Usage
 
 ```
-usage: gtracks [-h] [--genes <genes.bed.gz>]
+usage: gtracks [-h] [--genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>]
                [--color-palette <#color> [<#color> ...]] [--max <float>]
                [--tmp-dir <temp/file/dir>] [--width <int>]
                [--genes-height <int>] [--gene-rows <int>]
                <{chr:start-end,GENE}> [<track.bw> [<track.bw> ...]]
-               <path/to/output.{pdf,png,svg}
+               <path/to/output.{pdf,png,svg}>
 
 Plot bigWig signal tracks and gene annotations in a genomic region
 
@@ -93,15 +100,17 @@ positional arguments:
 
 optional arguments:
   -h, --help            show this help message and exit
-  --genes <genes.bed.gz>
+  --genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>
                         compressed 6-column BED file or 12-column BED12 file
-                        containing gene annotations
+                        containing gene annotations. Alternatively, providing
+                        a genome identifier will use one of the included gene
+                        tracks. (default: GRCh38)
   --color-palette <#color> [<#color> ...]
                         color pallete for tracks
   --max <float>         max value of y-axis
   --tmp-dir <temp/file/dir>
                         directory for temporary files
-  --width <int>         width of plot in cm
-  --genes-height <int>  height of genes track
-  --gene-rows <int>     number of gene rows
+  --width <int>         width of plot in cm (default: 40)
+  --genes-height <int>  height of genes track (default: 2)
+  --gene-rows <int>     number of gene rows (default: 1)
 ```
