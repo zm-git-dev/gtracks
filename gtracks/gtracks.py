@@ -149,6 +149,7 @@ def parse_arguments():
     parser.add_argument(
         'region',
         metavar='<{chr:start-end,GENE}>',
+        default='INS',
         help='coordinates or gene name to plot'
     )
     parser.add_argument(
@@ -170,7 +171,7 @@ def parse_arguments():
         help=(
             'compressed 6-column BED file or 12-column BED12 file containing '
             'gene annotations. Alternatively, providing a genome identifier '
-            'will use one of the included gene tracks. (default: GRCh38)'
+            'will use one of the included gene tracks. (default: GRCh37)'
         )
     )
     parser.add_argument(
