@@ -59,13 +59,13 @@ file = {}
 type = vlines
 """
 
+HG19_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg19.bed12.bed.gz')
+HG38_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg38.bed12.bed.gz')
+GENES_PATH = os.environ.get('GTRACKS_GENES_PATH', HG19_GENES_PATH)
 COLOR_PALETTE = os.environ.get(
     'GTRACKS_COLOR_PALETTE',
     ','.join(sns.color_palette().as_hex())
 ).split(',')
-GENES_PATH = os.environ.get(
-    'GTRACKS_GENES_PATH',
-)
 TRACKS = os.environ.get(
     'GTRACKS_TRACKS',
     os.path.join(os.path.dirname(__file__), 'bigWigExample.bw')
@@ -73,8 +73,6 @@ TRACKS = os.environ.get(
 
 COORD_REGEX = re.compile('chr[1-9XY]+:[0-9]+-[0-9]+$')
 
-HG19_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg19.bed12.bed.gz')
-HG38_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg38.bed12.bed.gz')
 GENOME_TO_GENES = {
     'GRCh38': HG38_GENES_PATH, 'hg38': HG38_GENES_PATH,
     'GRCh37': HG19_GENES_PATH, 'hg19': HG19_GENES_PATH
@@ -129,8 +127,8 @@ def parse_region(region):
     return chrom, int(start), int(end)
 
 
-def parse_gene(gene):
-    with gzip.open(GENES_PATH, 'rt') as f:
+def parse_gene(gene, genes_path=GENES_PATH):
+    with gzip.open(genes_path, 'rt') as f:
         for line in f:
             parsed_line = line.split()
             if parsed_line[3] == gene:
@@ -168,7 +166,7 @@ def parse_arguments():
     parser.add_argument(
         '--genes',
         metavar='<{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>',
-        default='GRCh38',
+        default='GRCh37',
         help=(
             'compressed 6-column BED file or 12-column BED12 file containing '
             'gene annotations. Alternatively, providing a genome identifier '
