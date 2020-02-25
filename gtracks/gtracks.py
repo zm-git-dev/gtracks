@@ -216,7 +216,7 @@ def parse_arguments():
     if args.genes in set(GENOME_TO_GENES.keys()):
         genes_path = GENOME_TO_GENES[args.genes]
         args.genes = genes_path
-    return parser.parse_args()
+    return args
 
 
 def main():
