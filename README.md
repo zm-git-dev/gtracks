@@ -21,12 +21,40 @@ gtracks test.svg
 ![test plot](test.svg)
 
 You can plot your own tracks over other genomic regions by providing more
-arguments. The file type of the plot will be determined by the output file
-extension. For more command-line options, see the usage page below.
+positional arguments: a region or gene name and paths to one or more bigWig
+files. The file type of the plot will be determined by the
+output file extension.
 ```sh
 gtracks chr11:2150341-2182439 track1.bw track2.bw output.pdf
 gtracks INS track1.bw track2.bw output.png
 ```
+
+### Modifying the gene annotations track
+
+GRCh37/hg19 gene annotations are used by default, but you can plot GRCh38/hg38
+genes by adding `--genes GRCh38` or `--genes hg38`. You can use your own gene
+annotations file (BED or BED12 format) by providing
+`--genes <path/to/genes.bed.gz>`.
+
+### Changing the color palette
+
+You can change the color palette for bigWig tracks using the `--color-palette` option.
+```sh
+gtracks INS track1.bw track2.bw track3.bw output.png --color-palette "#color1" "#color2" "#color3"
+```
+
+### Setting y-axis height
+
+By default, tracks have different y-axis heights depending on signal height.
+You can set a uniform y-axis height for all tracks using the `--max` option.
+
+```sh
+gtracks INS track1.bw track2.bw track3.bw output.png --max 400
+```
+
+For more command-line options, see the usage page below.
+
+## Environment variables
 
 If you want to use your own bigWig files but don't want to write out their
 paths every time you run `gtracks`, you can set your own default tracks using
@@ -38,6 +66,11 @@ gtracks output.svg
 
 You can also change the default gene annotations file and color palette using
 environment variables `GTRACKS_GENES_PATH` and `GTRACKS_COLOR_PALETTE`.
+```
+export GTRACKS_GENES_PATH=path/to/genes.bed.gz
+export GTRACKS_COLOR_PALETTE="#color1,#color2,#color3"
+gtracks output.svg
+```
 
 ## Usage
 
