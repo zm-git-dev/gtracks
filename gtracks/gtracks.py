@@ -68,7 +68,7 @@ COLOR_PALETTE = os.environ.get(
 ).split(',')
 TRACKS = os.environ.get(
     'GTRACKS_TRACKS',
-    os.path.join(os.path.dirname(__file__), 'bigWigExample.bw')
+    os.path.join(os.path.dirname(__file__), 'pancreatic_islet_atac_seq_ins.bw')
 ).split(',')
 
 COORD_REGEX = re.compile('chr[1-9XY]+:[0-9]+-[0-9]+$')
