@@ -1,6 +1,6 @@
 # gtracks
 
-plot genome track data from bigWig files
+Plot genome track data from bigWig files. Powered by [pyGenomeTracks](https://github.com/deeptools/pyGenomeTracks).
 
 ## Installation
 
