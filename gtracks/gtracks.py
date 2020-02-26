@@ -68,7 +68,10 @@ COLOR_PALETTE = os.environ.get(
 ).split(',')
 TRACKS = os.environ.get(
     'GTRACKS_TRACKS',
-    os.path.join(os.path.dirname(__file__), 'pancreatic_islet_atac_seq_ins.bw')
+    os.path.join(
+        os.path.dirname(__file__),
+        'pancreatic_islet_atac_seq_ins_igf2.bw'
+    )
 ).split(',')
 
 COORD_REGEX = re.compile('chr[1-9XY]+:[0-9]+-[0-9]+$')
@@ -149,7 +152,6 @@ def parse_arguments():
     parser.add_argument(
         'region',
         metavar='<{chr:start-end,GENE}>',
-        default='INS-IGF2',
         help='coordinates or gene name to plot'
     )
     parser.add_argument(

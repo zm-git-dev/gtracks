@@ -14,9 +14,10 @@ pip3 install --user gtracks
 
 ## Examples
 
-To generate a test plot, you only need to provide the output filename.
+An example bigwig file with ATAC-seq data from the insulin region is included.
+You can generate a test plot like this:
 ```sh
-gtracks test.svg
+gtracks INS-IGF2 test.svg
 ```
 ![test plot](test.svg)
 
