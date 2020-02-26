@@ -1,6 +1,6 @@
 # gtracks
 
-plot genome track data (for example from bigWig files)
+plot genome track data from bigWig files
 
 ## Installation
 
