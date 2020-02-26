@@ -19,7 +19,7 @@ You can generate a test plot like this:
 ```sh
 gtracks INS-IGF2 test.svg
 ```
-![test plot](test.svg)
+![test plot](https://github.com/anthony-aylward/gtracks/raw/master/test.svg)
 
 You can plot your own tracks over other genomic regions by providing more
 positional arguments: a region or gene name and paths to one or more bigWig
@@ -43,7 +43,7 @@ the `--genes-height` and `--gene-rows` options.
 ```sh
 gtracks INS test-genes.svg --genes-height 6 --gene-rows 6
 ```
-![test plot with more gene rows](test-genes.svg)
+![test plot with more gene rows](https://github.com/anthony-aylward/gtracks/raw/master/test-genes.svg)
 
 ### Changing the color palette
 
