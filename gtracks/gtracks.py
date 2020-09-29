@@ -49,8 +49,9 @@ height = {}
 gene rows = {}
 """
 
-X_AXIS_CONFIG = """
+X_AXIS_CONFIG_FORMAT = """
 [x-axis]
+where = {}
 """
 
 VLINES_CONFIG_FORMAT = """
@@ -94,10 +95,13 @@ def make_tracks_file(
     temp_dir=None,
     color_palette=COLOR_PALETTE,
     genes_height=2,
-    gene_rows=1
+    gene_rows=1,
+    x_axis='top'
 ):
+    X_AXIS_CONFIG = X_AXIS_CONFIG_FORMAT.format(x_axis)
     return (
-        '\n'.join(
+        bool(x_axis == 'top') * X_AXIS_CONFIG
+        + '\n'.join(
             BIGWIG_CONFIG_FORMAT.format(
                 file=track,
                 title=os.path.basename(track).split('.')[0],
@@ -108,7 +112,7 @@ def make_tracks_file(
         )
         + SPACER
         + bool(genes) * GENES_CONFIG_FORMAT.format(genes, genes_height, gene_rows)
-        + X_AXIS_CONFIG
+        + bool(x_axis == 'bottom') * X_AXIS_CONFIG
         + bool(vlines_bed) * VLINES_CONFIG_FORMAT.format(vlines_bed)
     )
 
@@ -215,6 +219,12 @@ def parse_arguments():
         default=1,
         help='number of gene rows (default: 1)'
     )
+    parser.add_argument(
+        '--x-axis',
+        choices=('top', 'bottom', 'none'),
+        default='top',
+        help='where to draw the x-axis (default: top)'
+    )
     args = parser.parse_args()
     if args.genes in set(GENOME_TO_GENES.keys()):
         genes_path = GENOME_TO_GENES[args.genes]
@@ -242,7 +252,8 @@ def main():
             max=args.max,
             color_palette=args.color_palette,
             genes_height=args.genes_height,
-            gene_rows=args.gene_rows
+            gene_rows=args.gene_rows,
+            x_axis=args.x_axis
         )
         temp_tracks.write(tracks_file.encode())
         temp_tracks.seek(0)
