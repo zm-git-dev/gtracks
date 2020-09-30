@@ -225,6 +225,11 @@ def parse_arguments():
         default='top',
         help='where to draw the x-axis (default: top)'
     )
+    parser.add_argument(
+        '--vlines-bed',
+        metavar='path/to/vlines.bed',
+        help='BED file defining vertical lines'
+    )
     args = parser.parse_args()
     if args.genes in set(GENOME_TO_GENES.keys()):
         genes_path = GENOME_TO_GENES[args.genes]
@@ -248,6 +253,7 @@ def main():
     with tempfile.NamedTemporaryFile(dir=args.tmp_dir) as temp_tracks:
         tracks_file = make_tracks_file(
             *args.track,
+            vlines_bed=args.vlines_bed,
             genes=args.genes,
             max=args.max,
             color_palette=args.color_palette,
