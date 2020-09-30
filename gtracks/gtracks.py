@@ -227,7 +227,7 @@ def parse_arguments():
     )
     parser.add_argument(
         '--vlines-bed',
-        metavar='path/to/vlines.bed',
+        metavar='<path/to/vlines.bed>',
         help='BED file defining vertical lines'
     )
     args = parser.parse_args()
