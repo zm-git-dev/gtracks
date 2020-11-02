@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='gtracks',
-    version='1.3.1',
+    version='1.3.2',
     author='Anthony Aylward',
     author_email='aaylward@eng.ucsd.edu',
     description='Plot genome track data',
@@ -18,7 +18,7 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
-    install_requires=['deeptools', 'seaborn'],
+    install_requires=['deeptools', 'pyGenomeTracks', 'seaborn'],
     entry_points={
         'console_scripts': [
             'gtracks=gtracks.gtracks:main',
