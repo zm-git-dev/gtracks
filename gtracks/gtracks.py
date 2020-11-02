@@ -255,7 +255,7 @@ def main():
             *args.track,
             vlines_bed=args.vlines_bed,
             genes=args.genes,
-            max=args.max,
+            max=(args.max or 'auto'),
             color_palette=args.color_palette,
             genes_height=args.genes_height,
             gene_rows=args.gene_rows,
