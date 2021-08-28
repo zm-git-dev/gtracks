@@ -5,11 +5,11 @@ Plot genome track data from bigWig files. Powered by [pyGenomeTracks](https://gi
 ## Installation
 
 ```sh
-pip3 install gtracks
+pip install gtracks
 ```
 or
 ```sh
-pip3 install --user gtracks
+pip install --user gtracks
 ```
 
 ## Examples
