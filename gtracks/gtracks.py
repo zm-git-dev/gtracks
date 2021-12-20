@@ -75,7 +75,7 @@ TRACKS = os.environ.get(
     )
 ).split(',')
 
-COORD_REGEX = re.compile('chr[1-9XY]+:[0-9]+-[0-9]+$')
+COORD_REGEX = re.compile('chr[0-9XY]+:[0-9]+-[0-9]+$')
 
 GENOME_TO_GENES = {
     'GRCh38': HG38_GENES_PATH, 'hg38': HG38_GENES_PATH,
