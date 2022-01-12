@@ -56,7 +56,7 @@ def main():
         block_size, block_start = zip(
             *((str(exon.stop - exon.start), str(exon.start - gene.start))
               for exon in exons.intersect(BedTool((gene,)))))
-        print('\t'.join(str(x) for x in tuple(gene) + (gene.stop, gene.stop,
+        print('\t'.join(str(x) for x in tuple(gene) + (gene.start, gene.start,
             '0,0,0', len(block_size), ','.join(block_size)+',',
             ','.join(block_start)+',')))
 
