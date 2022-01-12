@@ -245,7 +245,7 @@ def main():
     if COORD_REGEX.match(args.region):
         chrom, xmin, xmax = parse_region(args.region)
     else:
-        chrom, start, end = parse_gene(args.region)
+        chrom, start, end = parse_gene(args.region, genes_path=args.genes)
         center = (end + start) / 2
         xmin = int(center - 0.55 * (end - start))
         xmax = int(center + 0.55 * (end - start))
