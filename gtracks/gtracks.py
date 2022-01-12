@@ -34,6 +34,18 @@ max_value = {max}
 file_type = bigwig
 """
 
+
+BED4_CONFIG_FORMAT = """
+[{title}]
+file={file}
+title = {title}
+height = 1
+file_type = bed
+color = {color}
+global_max_row = false
+line_width = 1.5
+"""
+
 SPACER = """
 
 [spacer]
@@ -98,15 +110,17 @@ def make_tracks_file(
     x_axis='top'
 ):
     X_AXIS_CONFIG = X_AXIS_CONFIG_FORMAT.format(x_axis)
+
     return (
         bool(x_axis == 'top') * X_AXIS_CONFIG
         + '\n'.join(
             BIGWIG_CONFIG_FORMAT.format(
-                file=track,
-                title=os.path.basename(track).split('.')[0],
-                color=color,
-                max=max
-            )
+                file=track, title=os.path.basename(track).split('.')[0],
+                color=color, max=max
+            ) if track.endswith('.bw') else BED4_CONFIG_FORMAT.format(
+                file=track, title=os.path.basename(track).split('.')[0],
+                color=color
+            ) if track.endswith('.bed') else ''
             for track, color in zip(tracks, color_palette[:len(tracks)])
         )
         + SPACER
@@ -159,10 +173,10 @@ def parse_arguments():
     )
     parser.add_argument(
         'track',
-        metavar='<track.bw>',
+        metavar='<track.{bw,bed}>',
         nargs='*',
         default=TRACKS,
-        help='bigWig files containing tracks'
+        help='bigWig or bed files containing tracks'
     )
     parser.add_argument(
         'output',
@@ -230,6 +244,10 @@ def parse_arguments():
         help='BED file defining vertical lines'
     )
     args = parser.parse_args()
+    for t in args.track:
+        if not t.endswith('.bw') or t.endswith('.bed'):
+            raise RuntimeError(
+                'track file extensions must be either .bw or .bed')
     if args.genes in set(GENOME_TO_GENES.keys()):
         genes_path = GENOME_TO_GENES[args.genes]
         args.genes = genes_path
