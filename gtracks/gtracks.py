@@ -245,7 +245,7 @@ def parse_arguments():
     )
     args = parser.parse_args()
     for t in args.track:
-        if not t.endswith('.bw') or t.endswith('.bed'):
+        if not (t.endswith('.bw') or t.endswith('.bed')):
             raise RuntimeError(
                 'track file extensions must be either .bw or .bed')
     if args.genes in set(GENOME_TO_GENES.keys()):
