@@ -53,8 +53,12 @@ def main():
             *((str(exon.stop - exon.start), str(exon.start - gene.start))
               for exon in exons.intersect(BedTool((gene,)))))
         thick = tuple(cds.intersect(BedTool((gene,))))
-        thick_start = thick[0].start
-        thick_stop = thick[-1].end
+        if thick:
+            thick_start = thick[0].start
+            thick_stop = thick[-1].end
+        else:
+            thick_start = gene.start
+            thick_stop = gene.stop
         print('\t'.join(str(x) for x in tuple(gene) + (thick_start, thick_stop,
             '0,0,0', len(block_size), ','.join(block_size)+',',
             ','.join(block_start)+',')))
