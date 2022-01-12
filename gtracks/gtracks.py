@@ -46,7 +46,7 @@ file = {}
 title = genes
 fontsize = 10
 height = {}
-gene rows = {}
+gene_rows = {}
 """
 
 X_AXIS_CONFIG_FORMAT = """
