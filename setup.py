@@ -18,11 +18,11 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent"
     ],
-    install_requires=['deeptools', 'pyGenomeTracks', 'seaborn'],
+    install_requires=['deeptools', 'pyGenomeTracks', 'seaborn', 'pybedtools'],
     entry_points={
         'console_scripts': [
             'gtracks=gtracks.gtracks:main',
-            'gtracks-download-example-bw=gtracks.download_example_bw:main'
+            'gtracks-gff3-to-bed12=gtracks.gff3_to_bed12:main'
         ]
     },
     include_package_data=True
