@@ -117,7 +117,7 @@ def make_tracks_file(
             BIGWIG_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
                 color=color, max=max
-            ) if track.endswith('.bw') else BED4_CONFIG_FORMAT.format(
+            ) if track.endswith('.bw') else SPACER + BED4_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
                 color=color
             ) if track.endswith('.bed') else ''
