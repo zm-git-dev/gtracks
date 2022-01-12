@@ -45,9 +45,9 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    genes = BedTool(tuple(generate_bed(args.gff)))
-    exons = BedTool(tuple(generate_bed(args.gff, type='exon')))
-    cds = BedTool(tuple(generate_bed(args.gff, type='CDS')))
+    genes = BedTool(tuple(generate_bed(args.gff))).sort()
+    exons = BedTool(tuple(generate_bed(args.gff, type='exon'))).sort()
+    cds = BedTool(tuple(generate_bed(args.gff, type='CDS'))).sort()
     for gene in genes:
         block_size, block_start = zip(
             *((str(exon.stop - exon.start), str(exon.start - gene.start))
