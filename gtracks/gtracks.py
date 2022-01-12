@@ -92,7 +92,6 @@ def make_tracks_file(
     vlines_bed=None,
     genes=None,
     max='auto',
-    temp_dir=None,
     color_palette=COLOR_PALETTE,
     genes_height=2,
     gene_rows=1,
