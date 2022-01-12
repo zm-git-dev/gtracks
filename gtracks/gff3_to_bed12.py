@@ -32,13 +32,8 @@ def parse_gff(gff: str, type='gene'):
                            parse_gff_attributes(attr))
 
 
-def generate_genes_bed(gff):
-    for seqid, start, end, strand, attr in parse_gff(gff):
-        yield seqid, start, end, attr['ID'], 0, strand
-
-
-def generate_exons_bed(gff):
-    for seqid, start, end, strand, attr in parse_gff(gff, type='exon'):
+def generate_bed(gff, type='gene'):
+    for seqid, start, end, strand, attr in parse_gff(gff, type=type):
         yield seqid, start, end, attr['ID'], 0, strand
 
 
@@ -50,13 +45,17 @@ def parse_arguments():
 
 def main():
     args = parse_arguments()
-    genes = BedTool(tuple(generate_genes_bed(args.gff)))
-    exons = BedTool(tuple(generate_exons_bed(args.gff)))
+    genes = BedTool(tuple(generate_bed(args.gff)))
+    exons = BedTool(tuple(generate_bed(args.gff, type='exon')))
+    cds = BedTool(tuple(generate_bed(args.gff, type='CDS')))
     for gene in genes:
         block_size, block_start = zip(
             *((str(exon.stop - exon.start), str(exon.start - gene.start))
               for exon in exons.intersect(BedTool((gene,)))))
-        print('\t'.join(str(x) for x in tuple(gene) + (gene.start, gene.start,
+        thick = tuple(cds.intersect(BedTool((gene,))))
+        thick_start = thick[0].start
+        thick_stop = thick[-1].end
+        print('\t'.join(str(x) for x in tuple(gene) + (thick_start, thick_stop,
             '0,0,0', len(block_size), ','.join(block_size)+',',
             ','.join(block_start)+',')))
 
