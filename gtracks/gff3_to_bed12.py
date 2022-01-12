@@ -58,7 +58,7 @@ def main():
             thick_stop = thick[-1].end
         else:
             thick_start = gene.start
-            thick_stop = gene.stop
+            thick_stop = gene.start
         print('\t'.join(str(x) for x in tuple(gene) + (thick_start, thick_stop,
             '0,0,0', len(block_size), ','.join(block_size)+',',
             ','.join(block_start)+',')))
