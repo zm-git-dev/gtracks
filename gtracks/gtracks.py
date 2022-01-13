@@ -39,11 +39,13 @@ BED4_CONFIG_FORMAT = """
 [{title}]
 file={file}
 title = {title}
+fontsize = 10
 height = 1
 file_type = bed
 color = {color}
 global_max_row = false
 line_width = 1.5
+labels = {labels}
 """
 
 SPACER = """
@@ -109,7 +111,8 @@ def make_tracks_file(
     color_palette=COLOR_PALETTE,
     genes_height=2,
     gene_rows=1,
-    x_axis='top'
+    x_axis='top',
+    bed_labels=False,
 ):
     X_AXIS_CONFIG = X_AXIS_CONFIG_FORMAT.format(x_axis)
 
@@ -121,7 +124,7 @@ def make_tracks_file(
                 color=color, max=max
             ) if track.endswith('.bw') else SPACER + BED4_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
-                color=color
+                color=color, labels=bed_labels
             ) if track.endswith('.bed') else ''
             for track, color in zip(tracks, color_palette[:len(tracks)])
         )
@@ -245,6 +248,11 @@ def parse_arguments():
         metavar='<path/to/vlines.bed>',
         help='BED file defining vertical lines'
     )
+    parser.add_argument(
+        '--bed-labels',
+        action='store_true',
+        help='include labels on BED tracks'
+    )
     args = parser.parse_args()
     for t in args.track:
         if not (t.endswith('.bw') or t.endswith('.bed')):
@@ -278,7 +286,8 @@ def main():
             color_palette=args.color_palette,
             genes_height=args.genes_height,
             gene_rows=args.gene_rows,
-            x_axis=args.x_axis
+            x_axis=args.x_axis,
+            bed_labels=args.bed_labels
         )
         temp_tracks.write(tracks_file.encode())
         temp_tracks.seek(0)
