@@ -74,6 +74,7 @@ type = vlines
 
 HG19_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg19.bed12.bed.gz')
 HG38_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg38.bed12.bed.gz')
+SP9512_GENES_PATH = os.path.join(os.path.dirname(__file__), 'sp9512.bed12.bed.gz')
 GENES_PATH = os.environ.get('GTRACKS_GENES_PATH', HG19_GENES_PATH)
 COLOR_PALETTE = os.environ.get(
     'GTRACKS_COLOR_PALETTE',
@@ -91,10 +92,11 @@ COORD_REGEX = re.compile('(chr)?[0-9XY]+:[0-9]+-[0-9]+$')
 
 GENOME_TO_GENES = {
     'GRCh38': HG38_GENES_PATH, 'hg38': HG38_GENES_PATH,
-    'GRCh37': HG19_GENES_PATH, 'hg19': HG19_GENES_PATH
+    'GRCh37': HG19_GENES_PATH, 'hg19': HG19_GENES_PATH,
+    'Sp9512': SP9512_GENES_PATH
 }
 
-
+SP9512_EXAMPLE_REGION= '7:6975000-6989000'
 
 
 # Functions ====================================================================
@@ -185,7 +187,7 @@ def parse_arguments():
     )
     parser.add_argument(
         '--genes',
-        metavar='<{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>',
+        metavar='<{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38,Sp9512}>',
         default='GRCh37',
         help=(
             'compressed 6-column BED file or 12-column BED12 file containing '
