@@ -25,7 +25,7 @@ import tempfile
 
 BIGWIG_CONFIG_FORMAT = """
 [{title}]
-file={file}
+file = {file}
 title = {title}
 height = 2
 color = {color}
@@ -37,7 +37,7 @@ file_type = bigwig
 
 BED4_CONFIG_FORMAT = """
 [{title}]
-file={file}
+file = {file}
 title = {title}
 fontsize = 10
 height = 1
@@ -124,7 +124,7 @@ def make_tracks_file(
                 color=color, max=max
             ) if track.endswith('.bw') else SPACER + BED4_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
-                color=color, labels=bed_labels
+                color=color, labels='true' if bed_labels else 'false'
             ) if track.endswith('.bed') else ''
             for track, color in zip(tracks, color_palette[:len(tracks)])
         )
