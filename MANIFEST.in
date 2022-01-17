@@ -2,6 +2,6 @@ include gtracks/hg19.bed12.bed.gz
 include gtracks/hg38.bed12.bed.gz
 include gtracks/pancreatic_islet_atac_seq_ins_igf2.bw
 include gtracks/sp9512.bed12.bed.gz
-include gtracks/sp9512-frond-turion-dmr.bed
-include gtracks/sp9512-frond-example.bw
-include gtracks/sp9512-turion-example.bw
+include gtracks/sp9512_frond_turion_dmr.bed
+include gtracks/sp9512_frond_example.bw
+include gtracks/sp9512_turion_example.bw
