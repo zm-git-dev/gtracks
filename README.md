@@ -63,6 +63,14 @@ gtracks INS track1.bw track2.bw track3.bw output.pdf --max 400
 
 For more command-line options, see the usage page below.
 
+### Example with non-human data and BED track
+
+This example command uses data from _S. polyrhiza_ and includes a BED track.
+
+```sh
+gtracks --genes Sp9512 7:6975000-6989000 sp9512_frond_example.bw sp9512_turion_example.bw sp9512_frond_turion_dmr.bed test-non-human.png
+```
+
 ## Environment variables
 
 If you want to use your own bigWig files but don't want to write out their
