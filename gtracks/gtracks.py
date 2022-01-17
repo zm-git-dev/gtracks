@@ -76,19 +76,14 @@ type = vlines
 
 HG19_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg19.bed12.bed.gz')
 HG38_GENES_PATH = os.path.join(os.path.dirname(__file__), 'hg38.bed12.bed.gz')
-SP9512_GENES_PATH = os.path.join(os.path.dirname(__file__), 'sp9512.bed12.bed.gz')
+SP9512_GENES_PATH = os.path.join(os.path.dirname(__file__),
+                                 'sp9512.a02u1.bed12.bed.gz')
 GENES_PATH = os.environ.get('GTRACKS_GENES_PATH', HG19_GENES_PATH)
-COLOR_PALETTE = os.environ.get(
-    'GTRACKS_COLOR_PALETTE',
-    ','.join(sns.color_palette().as_hex())
-).split(',')
-TRACKS = os.environ.get(
-    'GTRACKS_TRACKS',
-    os.path.join(
-        os.path.dirname(__file__),
-        'pancreatic_islet_atac_seq_ins_igf2.bw'
-    )
-).split(',')
+COLOR_PALETTE = os.environ.get('GTRACKS_COLOR_PALETTE',
+    ','.join(sns.color_palette().as_hex())).split(',')
+TRACKS = os.environ.get('GTRACKS_TRACKS',
+    os.path.join(os.path.dirname(__file__),
+        'pancreatic_islet_atac_seq_ins_igf2.bw')).split(',')
 
 COORD_REGEX = re.compile('(chr)?[0-9XY]+:[0-9]+-[0-9]+$')
 
