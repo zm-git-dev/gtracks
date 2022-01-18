@@ -94,29 +94,26 @@ gtracks output.pdf
 ## Usage
 
 ```
-usage: gtracks [-h] [--genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>]
-               [--color-palette <#color> [<#color> ...]] [--max <float>]
-               [--tmp-dir <temp/file/dir>] [--width <int>]
-               [--genes-height <int>] [--gene-rows <int>]
-               <{chr:start-end,GENE}> [<track.bw> [<track.bw> ...]]
-               <path/to/output.{pdf,png,svg}>
+usage: gtracks [-h] [--genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38,Sp9512}>]
+               [--color-palette <#color> [<#color> ...]] [--max <float>] [--tmp-dir <temp/file/dir>] [--width <int>]
+               [--genes-height <int>] [--gene-rows <int>] [--x-axis {top,bottom,none}]
+               [--vlines-bed <path/to/vlines.bed>] [--bed-labels]
+               <{chr:start-end,GENE}> [<track.{bw,bed}> [<track.{bw,bed}> ...]] <path/to/output.{pdf,png,svg}>
 
 Plot bigWig signal tracks and gene annotations in a genomic region
 
 positional arguments:
   <{chr:start-end,GENE}>
                         coordinates or gene name to plot
-  <track.bw>            bigWig files containing tracks
+  <track.{bw,bed}>      bigWig or bed files containing tracks
   <path/to/output.{pdf,png,svg}>
                         path to output file
 
 optional arguments:
   -h, --help            show this help message and exit
-  --genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38}>
-                        compressed 6-column BED file or 12-column BED12 file
-                        containing gene annotations. Alternatively, providing
-                        a genome identifier will use one of the included gene
-                        tracks. (default: GRCh37)
+  --genes <{path/to/genes.bed.gz,GRCh37,GRCh38,hg19,hg38,Sp9512}>
+                        compressed 6-column BED file or 12-column BED12 file containing gene annotations. Alternatively,
+                        providing a genome identifier will use one of the included gene tracks. (default: GRCh37)
   --color-palette <#color> [<#color> ...]
                         color pallete for tracks
   --max <float>         max value of y-axis
@@ -125,4 +122,9 @@ optional arguments:
   --width <int>         width of plot in cm (default: 40)
   --genes-height <int>  height of genes track (default: 2)
   --gene-rows <int>     number of gene rows (default: 1)
+  --x-axis {top,bottom,none}
+                        where to draw the x-axis (default: top)
+  --vlines-bed <path/to/vlines.bed>
+                        BED file defining vertical lines
+  --bed-labels          include labels on BED tracks
 ```
