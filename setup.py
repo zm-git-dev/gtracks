@@ -5,7 +5,7 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name='gtracks',
-    version='1.6.10',
+    version='1.7.0',
     author='Anthony Aylward',
     author_email='aaylward@eng.ucsd.edu',
     description='Plot genome track data',
@@ -22,7 +22,8 @@ setuptools.setup(
     entry_points={
         'console_scripts': [
             'gtracks=gtracks.gtracks:main',
-            'gtracks-gff3-to-bed12=gtracks.gff3_to_bed12:main'
+            'gtracks-gff3-to-bed12=gtracks.gff3_to_bed12:main',
+            'gtracks-gff3-to-bed6=gtracks.gff3_to_bed6:main'
         ]
     },
     include_package_data=True

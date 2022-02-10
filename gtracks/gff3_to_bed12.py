@@ -24,7 +24,7 @@ def parse_gff_attributes(attr):
 def parse_gff(gff: str, type='gene'):
     with open(gff) as f:
         for l in f:
-             if not l.startswith('##'):
+             if not l.startswith('#'):
                 seqid, _, t, start, end, _, strand, _, attr = l.rstrip().split(
                                                                            '\t')
                 if ((t == type) or (type is None)):
