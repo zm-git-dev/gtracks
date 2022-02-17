@@ -17,6 +17,7 @@ import re
 import subprocess
 import seaborn as sns
 import tempfile
+from itertools import cycle
 
 
 
@@ -122,7 +123,7 @@ def make_tracks_file(
                 file=track, title=os.path.basename(track).split('.')[0],
                 color=color, labels='true' if bed_labels else 'false'
             ) if track.endswith('.bed') else ''
-            for track, color in zip(tracks, color_palette[:len(tracks)])
+            for track, color in zip(tracks, cycle(color_palette))
         )
         + SPACER
         + bool(genes) * GENES_CONFIG_FORMAT.format(genes, genes_height, gene_rows)
