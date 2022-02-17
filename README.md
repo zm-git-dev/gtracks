@@ -78,17 +78,23 @@ gtracks --genes Sp9512 7:6975000-6989000 sp9512_frond_example.bw sp9512_turion_e
 If you want to use your own bigWig files but don't want to write out their
 paths every time you run `gtracks`, you can set your own default tracks using
 the environment variable `GTRACKS_TRACKS`.
-```
+```sh
 export GTRACKS_TRACKS=track1.bw,track2.bw,track3.bw
 gtracks output.pdf
 ```
 
 You can also change the default gene annotations file and color palette using
 environment variables `GTRACKS_GENES_PATH` and `GTRACKS_COLOR_PALETTE`.
-```
+```sh
 export GTRACKS_GENES_PATH=path/to/genes.bed.gz
 export GTRACKS_COLOR_PALETTE="#color1,#color2,#color3"
 gtracks output.pdf
+```
+
+Should your genomic coordinates take a different form from the included default
+regex, you may set a different default regex using `GTRACKS_COORD_REGEX`:
+```sh
+export GTRACKS_COORD_REGEX='[\s\S]+:[0-9]+-[0-9]+$'
 ```
 
 ## Usage
@@ -127,4 +133,6 @@ optional arguments:
   --vlines-bed <path/to/vlines.bed>
                         BED file defining vertical lines
   --bed-labels          include labels on BED tracks
+  --coord-regex <regex>
+                        regular expression indicating the format for coordinates (default: ([Cc]hr)?[0-9XY]+:[0-9]+-[0-9]+$)
 ```

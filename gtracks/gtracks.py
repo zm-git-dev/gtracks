@@ -85,7 +85,8 @@ TRACKS = os.environ.get('GTRACKS_TRACKS',
     os.path.join(os.path.dirname(__file__),
         'pancreatic_islet_atac_seq_ins_igf2.bw')).split(',')
 
-COORD_REGEX = re.compile('(chr)?[0-9XY]+:[0-9]+-[0-9]+$')
+COORD_REGEX = re.compile(os.environ.get('GTRACKS_COORD_REGEX',
+                                        '([Cc]hr)?[0-9XY]+:[0-9]+-[0-9]+$'))
 
 GENOME_TO_GENES = {
     'GRCh38': HG38_GENES_PATH, 'hg38': HG38_GENES_PATH,
@@ -248,6 +249,13 @@ def parse_arguments():
         action='store_true',
         help='include labels on BED tracks'
     )
+    parser.add_argument(
+        '--coord-regex',
+        metavar="<regex>",
+        type=re.compile,
+        default=COORD_REGEX,
+        help=f'regular expression indicating the format for coordinates (default: {COORD_REGEX.pattern})'
+    )
     args = parser.parse_args()
     for t in args.track:
         if not (t.endswith('.bw') or t.endswith('.bed')):
@@ -265,7 +273,7 @@ def main():
         raise RuntimeError(
             'Please make sure the output file extension is pdf, png, or svg'
         )
-    if COORD_REGEX.match(args.region):
+    if args.coord_regex.match(args.region):
         chrom, xmin, xmax = parse_region(args.region)
     else:
         chrom, start, end = parse_gene(args.region, genes_path=args.genes)
