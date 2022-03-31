@@ -2,7 +2,7 @@
 # gff3_to_bed12.py
 #===============================================================================
 
-"""Convert gff3 data to bed12 format"""
+"""Convert gff3 data to bed6 format"""
 
 
 
