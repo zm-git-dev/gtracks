@@ -104,7 +104,7 @@ def make_tracks_file(
     *tracks,
     vlines_bed=None,
     genes=None,
-    max='auto',
+    max=['auto'],
     color_palette=COLOR_PALETTE,
     genes_height=2,
     gene_rows=1,
@@ -118,12 +118,12 @@ def make_tracks_file(
         + '\n'.join(
             BIGWIG_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
-                color=color, max=max
+                color=color, max=m
             ) if track.endswith('.bw') else SPACER + BED4_CONFIG_FORMAT.format(
                 file=track, title=os.path.basename(track).split('.')[0],
                 color=color, labels='true' if bed_labels else 'false'
             ) if track.endswith('.bed') else ''
-            for track, color in zip(tracks, cycle(color_palette))
+            for track, color, m in zip(tracks, cycle(color_palette), cycle(max))
         )
         + SPACER
         + bool(genes) * GENES_CONFIG_FORMAT.format(genes, genes_height, gene_rows)
@@ -206,6 +206,7 @@ def parse_arguments():
         '--max',
         metavar='<float>',
         type=float,
+        nargs='+',
         help='max value of y-axis'
     )
     parser.add_argument(
@@ -286,7 +287,7 @@ def main():
             *args.track,
             vlines_bed=args.vlines_bed,
             genes=args.genes,
-            max=(args.max or 'auto'),
+            max=(args.max or ['auto']),
             color_palette=args.color_palette,
             genes_height=args.genes_height,
             gene_rows=args.gene_rows,
