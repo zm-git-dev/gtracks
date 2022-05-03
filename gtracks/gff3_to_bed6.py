@@ -38,7 +38,7 @@ def generate_bed(gff, type='gene'):
 
 
 def parse_arguments():
-    parser = ArgumentParser(description='convert gff3 to bed12')
+    parser = ArgumentParser(description='convert gff3 to bed6')
     parser.add_argument('gff', metavar='<input.gff3>', help='input gff3 file')
     return parser.parse_args()
 

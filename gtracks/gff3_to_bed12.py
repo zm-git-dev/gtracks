@@ -34,7 +34,8 @@ def parse_gff(gff: str, type='gene'):
 
 def generate_bed(gff, type='gene'):
     for seqid, start, end, strand, attr in parse_gff(gff, type=type):
-        yield seqid, start, end, attr['ID'], 0, strand
+        gene_id = attr['ID'] if 'ID' in attr.keys() else attr['Parent'].split('_')[0]
+        yield seqid, start, end, gene_id, 0, strand
 
 
 def parse_arguments():
@@ -51,8 +52,8 @@ def main():
     for gene in genes:
         block_size, block_start = zip(
             *((str(exon.stop - exon.start), str(exon.start - gene.start))
-              for exon in exons.intersect(BedTool((gene,)))))
-        thick = tuple(cds.intersect(BedTool((gene,))))
+              for exon in exons.intersect(BedTool((gene,)), nonamecheck=True)))
+        thick = tuple(cds.intersect(BedTool((gene,)), nonamecheck=True))
         if thick:
             thick_start = thick[0].start
             thick_stop = thick[-1].end
